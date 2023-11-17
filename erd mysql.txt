@@ -1,0 +1,62 @@
+CREATE TABLE `TipoProblema` (
+  `Problema_ID` int,
+  `TipoProblema` Varchar(50),
+  `TiempoRespuestaEstimado` int,
+  PRIMARY KEY (`TipoProblema`)
+);
+
+CREATE TABLE `Tecnicos` (
+  `Tecnico_ID` int,
+  `Nombre` Varchar(50),
+  `Especialidad` Varchar(100),
+  `Mail` Varchar(50),
+  `Tel` Varchar(20),
+  PRIMARY KEY (`Tecnico_ID`)
+);
+
+CREATE TABLE `Solucion` (
+  `Solucion_ID` int,
+  `solucion` Varchar(100),
+  `DescrpSolucion` text,
+  PRIMARY KEY (`solucion`)
+);
+
+CREATE TABLE `Clientes` (
+  `Integer` int,
+  `razonS` Varchar(50),
+  `cuit` Varchar(50),
+  `TipoServicio` Varchar(50),
+  PRIMARY KEY (`Integer`)
+);
+
+CREATE TABLE `Incidentes` (
+  `Incidente_ID` int,
+  `Cliente_ID` int,
+  `Servicio_ID` int,
+  `Descripcion` Varchar(50),
+  `esComplejo` Boolean,
+  `TipoProblema_ID` Varchar(50),
+  `Estado` Varchar(50),
+  `FechaCreacion` Date,
+  `FechaResolucion` Date,
+  `Solucion` Varchar(50),
+  `Tecnico` Varchar(50),
+  PRIMARY KEY (`Incidente_ID`),
+  FOREIGN KEY (`Solucion`) REFERENCES `Solucion`(`solucion`),
+  FOREIGN KEY (`Tecnico`) REFERENCES `Tecnicos`(`Tecnico_ID`),
+  FOREIGN KEY (`Cliente_ID`) REFERENCES `Clientes`(`Integer`),
+  FOREIGN KEY (`TipoProblema_ID`) REFERENCES `TipoProblema`(`TipoProblema`)
+);
+
+CREATE TABLE `TipoServicio` (
+  `Servicio_ID` int,
+  `TipoServicio` Varchar(50),
+  PRIMARY KEY (`TipoServicio`)
+);
+
+CREATE TABLE `Especialidades Tecnicas` (
+  `Especial_ID` int,
+  `Especialidades` Varchar(100),
+  PRIMARY KEY (`Especialidades`)
+);
+

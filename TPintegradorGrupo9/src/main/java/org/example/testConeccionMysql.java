@@ -16,20 +16,21 @@ import java.sql.Statement;
             try (Connection conexión = DriverManager.getConnection(url, usuario, contrasenia)) {
                 System.out.println("Conexión exitosa");
 
-                // Crear una declaración
-                Statement declaración = conexión.createStatement();
 
-                // Ejecutar una consulta
+                Statement declaración = conexión.createStatement();
                 ResultSet resultado = declaración.executeQuery("SELECT * FROM clientes");
 
-                // Procesar el resultado
-                while (resultado.next()) {
-                    // Obtener datos
-                    int id = resultado.getInt("columna_id");
-                    String nombre = resultado.getString("columna_nombre");
 
-                    // Hacer algo con los datos (por ejemplo, imprimirlos)
-                    System.out.println("ID: " + id + ", Nombre: " + nombre);
+                while (resultado.next()) {
+
+                    // Obteniendo datos de la tabla clientes
+                    int id = resultado.getInt("Cliente_ID");
+                    String nombre = resultado.getString("razonS");
+                    String nombre2 = resultado.getString("cuit");
+                    int tiposerv = resultado.getInt("TipoServicio");
+
+                    //Imprimo lo obtenido
+                    System.out.println("ID: " + id + ", Nombre: " + nombre+" "+nombre2+ " "+tiposerv);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

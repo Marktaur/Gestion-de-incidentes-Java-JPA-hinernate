@@ -25,4 +25,7 @@ public class Cliente {
     public void AgregarServicio(){}
     public void modificarSrvicio(){}
     public void darBajaServicio(){}
+
+    public void setNombre(String nuevoNombre) {
+    }
 }

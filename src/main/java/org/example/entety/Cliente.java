@@ -1,4 +1,5 @@
 package org.example.entety;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -8,13 +9,19 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Data  //toString
+@Entity
+@Table(name = "clientes")
 public class Cliente {
-    private int id;
-    private String razonSocial;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) // Java elije el autoincremental
+    @Column(name = "Cliente_ID")
+    private long id;
+    private String razonS;
     private String cuit;
+    @Column(name = "TipoServicio")
     private String tipoServicio;
 
-    public void Cliente(){};
+    public  Cliente(){};
 
 
     public void agregarCliente(){

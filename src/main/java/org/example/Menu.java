@@ -8,7 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.entety.Cliente;
 import org.jetbrains.annotations.NotNull;
+
+import static org.example.Main.*;
 
 @Getter
 @Setter
@@ -57,9 +60,13 @@ public class Menu {
 
     public void menuSec(int option, String nombreMenu) {
         if (option == 1) {
+            Cliente.agregarCliente();
             System.out.println("Se ha agregado como nuevo " + nombreMenu);
+
         } else if (option == 2) {
+            Cliente.modificarDatosCliente();
             System.out.println("Se ha editado el " + nombreMenu);
+
         } else if (option == 3) {
             System.out.println("Se ha eliminado el " + nombreMenu);
         }

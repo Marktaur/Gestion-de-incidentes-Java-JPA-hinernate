@@ -66,7 +66,7 @@ public class Cliente {
             em.close();
         }
     }
-    public static void darBajaCliente(){
+    public static void bajaCliente(){
 
         //Listar Clientes:
         EntityManager em1 = JpaUtil.getEntityManager();
@@ -97,7 +97,7 @@ public class Cliente {
 
 
     }
-    public static void modificarDatosCliente(){
+    public static void modificarCliente(){
 
         //Listar Clientes:
         EntityManager em1 = JpaUtil.getEntityManager();

@@ -60,24 +60,57 @@ public class Menu {
     }
 
     public void menuSec(int option, String nombreMenu) {
-        if (option == 1) {
-            if (nombreMenu.equals("Clientes")) {
-                Cliente.agregarCliente(); }
+       switch (option) {
+
+           case 1:
+               switch (nombreMenu) {
+                   case "Clientes" -> Cliente.agregarCliente();
+                  /* case "Incidentes" -> Cliente.agregarIncidente();
+                   case "Tecnicos" -> Cliente.agregarTecnico();
+                   case "Reportes" -> Cliente.reportes1();
+                   case "Servicios" -> Cliente.agregarServicio();
+                   case "Diagnosticos" -> Cliente.agregarDiagnostico();
+                   case "Soluciones" -> Cliente.agregarSolucion();*/
+               }
+               System.out.println("Se ha agregado como nuevo " + nombreMenu);
+               break;
 
 
-            System.out.println("Se ha agregado como nuevo " + nombreMenu);
-        } else if (option == 2) {
-            if (nombreMenu.equals("Clientes")) {
-            Cliente.modificarDatosCliente();}
+           case 2:
+               switch (nombreMenu) {
+                   case "Clientes" -> Cliente.modificarCliente();
+                   /*case "Incidentes" -> Cliente.modificarIncidente();
+                   case "Tecnicos" -> Cliente.modificarTecnico();
+                   case "Reportes" -> Cliente.reportes2();
+                   case "Servicios" -> Cliente.modificarServicio();
+                   case "Diagnosticos" -> Cliente.modificarDiagnostico();
+                   case "Soluciones" -> Cliente.modificarSolucion();*/
+               }
+               System.out.println("Se ha editado el " + nombreMenu);
+               break;
+
+           case 3:
+               switch (nombreMenu) {
+                   case "Clientes" -> Cliente.bajaCliente();
+                  /* case "Incidentes" -> Cliente.bajaIncidente();
+                   case "Tecnicos" -> Cliente.bajaTecnico();
+                   case "Reportes" -> Cliente.reportes3();
+                   case "Servicios" -> Cliente.bajaServicio();
+                   case "Diagnosticos" -> Cliente.bajaDiagnostico();
+                   case "Soluciones" -> Cliente.bajaSolucion();*/
+               }
+               System.out.println("Se ha eliminado el " + nombreMenu);
+               break;
+
+           case 4:
 
 
-            System.out.println("Se ha editado el " + nombreMenu);
-        } else if (option == 3) {
-            if (nombreMenu.equals("Clientes")) {
-            Cliente.darBajaCliente();}
 
 
-            System.out.println("Se ha eliminado el " + nombreMenu);
+
+
+
+
         }
     }
 }

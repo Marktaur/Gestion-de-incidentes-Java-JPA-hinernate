@@ -38,7 +38,7 @@ public class Cliente {
         System.out.println("Seleccione de la lista el tipo de servivio contratado");
 
 
-        System.out.println("area de lista de servicios");
+
 
         int numeroServicio = teclado.nextInt();
 
@@ -66,11 +66,49 @@ public class Cliente {
             em.close();
         }
     }
-    public void darBajaCliente(){}
+    public static void darBajaCliente(){
+
+        //Listar Clientes:
+        EntityManager em1 = JpaUtil.getEntityManager();
+        List<Cliente> clientes = em1.createQuery("select c from Cliente c", Cliente.class).getResultList();
+        System.out.println();
+        System.out.println("****************************************************************");
+        System.out.println("********************** Lista de Clientes ***********************");
+        System.out.println("****************************************************************");
+        clientes.forEach(System.out::println);
+        System.out.println("****************************************************************");
+        em1.close();
+        Scanner s = new Scanner(System.in);
+        System.out.println("Ingrese el id del cliente a eliminar:");
+        Long id1 = s.nextLong();
+        EntityManager em2 = JpaUtil.getEntityManager();
+        try {
+
+            Cliente cliente = em2.find(Cliente.class, id1);
+            em2.getTransaction().begin();
+            em2.remove(cliente);
+            em2.getTransaction().commit();
+        } catch (Exception e) {
+            em2.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em2.close();
+        }
+
+
+    }
     public static void modificarDatosCliente(){
 
-        //Listar Clientes
-
+        //Listar Clientes:
+        EntityManager em1 = JpaUtil.getEntityManager();
+        List<Cliente> clientes = em1.createQuery("select c from Cliente c", Cliente.class).getResultList();
+        System.out.println();
+        System.out.println("****************************************************************");
+        System.out.println("********************** Lista de Clientes ***********************");
+        System.out.println("****************************************************************");
+        clientes.forEach(System.out::println);
+        System.out.println("****************************************************************");
+        em1.close();
 
 
         EntityManager em = JpaUtil.getEntityManager();
@@ -108,14 +146,5 @@ public class Cliente {
         }
     }
 
-
-
-
-    public void AgregarServicio(){}
-    public void modificarSrvicio(){}
-    public void darBajaServicio(){}
-
-    public void setNombre(String nuevoNombre) {
-    }
 }
 

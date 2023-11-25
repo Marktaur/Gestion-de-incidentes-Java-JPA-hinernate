@@ -2,6 +2,7 @@ package org.example;
 import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 import lombok.AllArgsConstructor;
@@ -60,39 +61,25 @@ public class Menu {
 
     public void menuSec(int option, String nombreMenu) {
         if (option == 1) {
-            Cliente.agregarCliente();
+            if (nombreMenu.equals("Clientes")) {
+                Cliente.agregarCliente(); }
+
+
             System.out.println("Se ha agregado como nuevo " + nombreMenu);
-
         } else if (option == 2) {
-            Cliente.modificarDatosCliente();
-            System.out.println("Se ha editado el " + nombreMenu);
+            if (nombreMenu.equals("Clientes")) {
+            Cliente.modificarDatosCliente();}
 
+
+            System.out.println("Se ha editado el " + nombreMenu);
         } else if (option == 3) {
+            if (nombreMenu.equals("Clientes")) {
+            Cliente.darBajaCliente();}
+
+
             System.out.println("Se ha eliminado el " + nombreMenu);
         }
     }
 }
-/*
-    public void menuIncidente(int option){
-        if (option == 1){
-            System.out.println("Se ha agregado como nuevo cliente");
-        } else if (option == 2){
-            System.out.println("Se ha editado el cliente");
-        } else if (option == 3){
-            System.out.println("Se ha eliminado el cliente");
-        }
-    }
-
-    public void menuTecnico(int option){
-        if (option == 1){
-            System.out.println("Se ha agregado como nuevo cliente");
-        } else if (option == 2){
-            System.out.println("Se ha editado el cliente");
-        } else if (option == 3){
-            System.out.println("Se ha eliminado el cliente");
-        }
-    }
-*/
-
 
 

@@ -1,137 +1,86 @@
 CREATE TABLE `TipoProblema` (
-  `Problema_ID` INT,
-  `TipoProblema` VARCHAR(50),
-  `TiempoRespuestaEstimado` INT,
-  PRIMARY KEY (`Problema_ID`)
+  `problema_ID` INT AUTO_INCREMENT,
+  `tipoProblema` VARCHAR(50),
+  `tiempoRespuestaEstimado` INT,
+  PRIMARY KEY (`problema_ID`)
 ) ENGINE=InnoDB;
 
 
 CREATE TABLE `TipoServicio` (
-  `Servicio_ID` INT,
-  `TipoServ` VARCHAR(100),
-  PRIMARY KEY (`Servicio_ID`)
+  `servicio_ID` INT AUTO_INCREMENT,
+  `tipoServ` VARCHAR(50),
+  PRIMARY KEY (`servicio_ID`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `EspecialidadesTecnicas` (
-  `Especial_ID` INT,
-  `Especial` VARCHAR(100),
-  PRIMARY KEY (`Especial_ID`)
-) ENGINE=InnoDB;
-
-CREATE TABLE `Tecnicos` (
-  `Tecnico_ID` INT,
-  `Nombre` VARCHAR(50),
-  `Especialidad` INT,
-  `Mail` VARCHAR(50),
-  `Tel` VARCHAR(20),
-  PRIMARY KEY (`Tecnico_ID`),
-  FOREIGN KEY (`Especialidad`) REFERENCES `EspecialidadesTecnicas`(`Especial_ID`)
-) ENGINE=InnoDB;
-
-CREATE TABLE `Solucion` (
-  `Solucion_ID` INT,
-  `solucion` VARCHAR(100),
-  `DescrpSolucion` TEXT,
-  PRIMARY KEY (`Solucion_ID`)
-) ENGINE=InnoDB;
-
-CREATE TABLE `Clientes` (
-  `Cliente_ID` INT,
-  `razonS` VARCHAR(50),
-  `cuit` VARCHAR(50),
-  `TipoServicio` INT,
-  PRIMARY KEY (`Cliente_ID`),
-  FOREIGN KEY (`TipoServicio`) REFERENCES `TipoServicio`(`Servicio_ID`)
-
-) ENGINE=InnoDB;
-
-CREATE TABLE `Incidentes` (
-  `Incidente_ID` INT,
-  `Cliente_ID` INT,
-  `Servicio_ID` INT,
-  `Descripcion` VARCHAR(50),
-  `esComplejo` TINYINT(1),
-  `TipoProblema_ID` INT,
-  `Estado` VARCHAR(50),
-  `FechaCreacion` DATE,
-  `FechaResolucion` DATE,
-  `Solucion_ID` INT,
-  `Tecnico_ID` INT,
-  PRIMARY KEY (`Incidente_ID`),
-  FOREIGN KEY (`Solucion_ID`) REFERENCES `Solucion`(`Solucion_ID`),
-  FOREIGN KEY (`Tecnico_ID`) REFERENCES `Tecnicos`(`Tecnico_ID`),
-  FOREIGN KEY (`Cliente_ID`) REFERENCES `Clientes`(`Cliente_ID`),
-  FOREIGN KEY (`TipoProblema_ID`) REFERENCES `TipoProblema`(`Problema_ID`)
-) ENGINE=InnoDB;
-
-
-************
-
-con auto increment:
-
-CREATE TABLE `TipoProblema` (
-  `Problema_ID` INT AUTO_INCREMENT,
-  `TipoProblema` VARCHAR(50),
-  `TiempoRespuestaEstimado` INT,
-  PRIMARY KEY (`Problema_ID`)
-) ENGINE=InnoDB;
-
-
-CREATE TABLE `TipoServicio` (
-  `Servicio_ID` INT AUTO_INCREMENT,
-  `TipoServ` VARCHAR(100),
-  PRIMARY KEY (`Servicio_ID`)
-) ENGINE=InnoDB;
-
-CREATE TABLE `EspecialidadesTecnicas` (
-  `Especial_ID` INT AUTO_INCREMENT,
-  `Especial` VARCHAR(100),
-  PRIMARY KEY (`Especial_ID`)
+  `especial_ID` INT AUTO_INCREMENT,
+  `especial` VARCHAR(50),
+  PRIMARY KEY (`especial_ID`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `Tecnicos` (
   `Tecnico_ID` INT AUTO_INCREMENT,
   `Nombre` VARCHAR(50),
-  `Especialidad` INT,
+  `Especialidad` Varchar(50),
   `Mail` VARCHAR(50),
-  `Tel` VARCHAR(20),
-  PRIMARY KEY (`Tecnico_ID`),
-  FOREIGN KEY (`Especialidad`) REFERENCES `EspecialidadesTecnicas`(`Especial_ID`)
+  `Tel` VARCHAR(50),
+  PRIMARY KEY (`tecnico_ID`),
+  FOREIGN KEY (`especialidad`) REFERENCES `EspecialidadesTecnicas`(`especial`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `Solucion` (
-  `Solucion_ID` INT AUTO_INCREMENT,
+  `solucion_ID` INT AUTO_INCREMENT,
   `solucion` VARCHAR(100),
-  `DescrpSolucion` TEXT,
-  PRIMARY KEY (`Solucion_ID`)
+  `descrpSolucion` TEXT,
+  PRIMARY KEY (`solucion_ID`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `Clientes` (
-  `Cliente_ID` INT AUTO_INCREMENT,
+  `cliente_ID` INT AUTO_INCREMENT,
   `razonS` VARCHAR(50),
   `cuit` VARCHAR(50),
-  `TipoServicio` INT,
-  PRIMARY KEY (`Cliente_ID`),
-  FOREIGN KEY (`TipoServicio`) REFERENCES `TipoServicio`(`Servicio_ID`)
+  `tipoServicio` INT,
+  PRIMARY KEY (`cliente_ID`),
+  FOREIGN KEY (`tipoServicio`) REFERENCES `TipoServicio`(`tipoServ`)
 
 ) ENGINE=InnoDB;
 
 CREATE TABLE `Incidentes` (
-  `Incidente_ID` INT AUTO_INCREMENT,
-  `Cliente_ID` INT,
-  `Servicio_ID` INT,
-  `Descripcion` VARCHAR(50),
+  `incidente_ID` INT AUTO_INCREMENT,
+  `cliente` VARCHAR(50),
+  `servicio` VARCHAR(50),
+  `descripcion` VARCHAR(50),
   `esComplejo` TINYINT(1),
-  `TipoProblema_ID` INT,
-  `Estado` VARCHAR(50),
-  `FechaCreacion` DATE,
-  `FechaResolucion` DATE,
-  `Solucion_ID` INT,
-  `Tecnico_ID` INT,
-  PRIMARY KEY (`Incidente_ID`),
-  FOREIGN KEY (`Solucion_ID`) REFERENCES `Solucion`(`Solucion_ID`),
-  FOREIGN KEY (`Tecnico_ID`) REFERENCES `Tecnicos`(`Tecnico_ID`),
-  FOREIGN KEY (`Cliente_ID`) REFERENCES `Clientes`(`Cliente_ID`),
-  FOREIGN KEY (`TipoProblema_ID`) REFERENCES `TipoProblema`(`Problema_ID`)
+  `tipoProblema`VARCHAR(50),
+  `estado` VARCHAR(50),
+  `fechaCreacion` DATE,
+  `fechaINI` DATE,
+  `fechaFIN` DATE,
+  `solucion` VARCHAR(50),
+  `tecnico` VARCHAR(50),
+  `descripSolucion` VARCHAR(100),
+  PRIMARY KEY (`incidente_ID`),
+  FOREIGN KEY (`solucion`) REFERENCES `Solucion`(`solucion`),
+  FOREIGN KEY (`tecnico`) REFERENCES `Tecnicos`(`razonS`),
+  FOREIGN KEY (`cliente`) REFERENCES `Clientes`(`cliente_ID`),
+  FOREIGN KEY (`tipoProblema`) REFERENCES `TipoProblema`(`problema_ID`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `Clientes_TipoServicio` (
+  `id` INT AUTO_INCREMENT,
+  `cliente_ID` INT,
+  `servicio_ID` INT,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`cliente_ID`) REFERENCES `Clientes`(`cliente_ID`),
+  FOREIGN KEY (`servicio_ID`) REFERENCES `TipoServicio`(`servicio_ID`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `Tecnicos_Especialidades` (
+  `id` INT AUTO_INCREMENT,
+  `tecnico_ID` INT,
+  `especial_ID` INT,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`tecnico_ID`) REFERENCES `Tecnicos`(`Tecnico_ID`),
+  FOREIGN KEY (`especial_ID`) REFERENCES `EspecialidadesTecnicas`(`especial_ID`)
 ) ENGINE=InnoDB;
 

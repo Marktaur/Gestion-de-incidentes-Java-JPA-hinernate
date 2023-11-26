@@ -56,7 +56,7 @@ public class Menu {
            case 1:
                switch (nombreMenu) {
                    case "Clientes" -> Cliente.listarClientes();
-                   /* case "Incidentes" -> Cliente.agregarIncidente();*/
+                    case "Incidentes" -> Incidente.listarIncidentes();
                    case "Tecnicos" -> Tecnicos.listarTecnicos();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.listarEspecialidades();
                    //case "Reportes" -> Cliente.reportes1();
@@ -69,7 +69,7 @@ public class Menu {
            case 2:
                switch (nombreMenu) {
                    case "Clientes" -> Cliente.agregarCliente();
-                  /* case "Incidentes" -> Cliente.agregarIncidente();*/
+                  case "Incidentes" -> Incidente.verIncidente();
                    case "Tecnicos" -> Tecnicos.agregarTecnico();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.agregarEspecialidad();
                    //case "Reportes" -> Cliente.reportes1();

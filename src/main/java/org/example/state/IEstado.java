@@ -1,6 +1,9 @@
 package org.example.state;
+import jakarta.persistence.Transient;
 import org.example.entety.Incidente;
+
 public interface IEstado {
+
 
 
     //uso del patron State para los 3 estados de un incidente

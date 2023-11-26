@@ -25,12 +25,13 @@ public class Tecnicos {
     private int especialidad;
     @Column(name = "Mail")
     private String mailTel;
+    private boolean ocupado;
 
     @Override
     public String toString() {
 
-        return String.format("ID = %-3d, Nombre = '%-20s', Especialidad = %-15d, Mail/Tel = '%s'",
-                id, nombre, especialidad, mailTel);
+        return String.format("ID = %-3d, Nombre = '%-20s', Especialidad = %-20d, Mail/Tel = '%-20s', Ocupado = '%s'",
+                id, nombre, especialidad, mailTel, ocupado);
     }
 
     public Tecnicos() {
@@ -68,6 +69,7 @@ public class Tecnicos {
             c.setNombre(nombre);
             c.setEspecialidad(especialidad);
             c.setMailTel(mailTel);
+            c.setOcupado(false);
 
 
             em.persist(c);
@@ -166,6 +168,7 @@ public class Tecnicos {
             b.setNombre(nombre);
             b.setEspecialidad(especialidad);
             b.setMailTel(mailTel);
+            b.setOcupado(false);
 
 
             em.merge(b);

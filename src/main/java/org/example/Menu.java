@@ -84,7 +84,7 @@ public class Menu {
            case 3:
                switch (nombreMenu) {
                    case "Clientes" -> Cliente.modificarCliente();
-                   //case "Incidentes" -> Cliente.modificarIncidente();
+                   case "Incidentes" -> Incidente.agregarIncidente();
                    case "Tecnicos" -> Tecnicos.modificarTecnico();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.modificarEspecialidad();
                    //case "Reportes" -> Cliente.reportes2();
@@ -98,7 +98,7 @@ public class Menu {
            case 4:
                switch (nombreMenu) {
                    case "Clientes" -> Cliente.bajaCliente();
-                  /* case "Incidentes" -> Cliente.bajaIncidente();*/
+                  case "Incidentes" -> Incidente.modificarIncidente();
                    case "Tecnicos" -> Tecnicos.bajaTecnico();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.bajaEspecialidad();
                   // case "Reportes" -> Cliente.reportes3();
@@ -110,13 +110,20 @@ public class Menu {
                break;
 
            case 5:
+               Incidente.asignarTecnico();
                break;
            case 6:
+               Incidente.cambiarEstado();
                break;
            case 7:
+               Incidente.mostrarIncidentesResueltos();
                break;
            case 8:
+               Incidente.bajaIncidente();
                break;
+           case 9:
+               break;
+
 
 
 

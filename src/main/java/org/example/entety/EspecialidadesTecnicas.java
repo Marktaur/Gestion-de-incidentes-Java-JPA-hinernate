@@ -19,7 +19,7 @@ import java.util.Scanner;
 @Table(name = "especialidadesTecnicas")
 public class EspecialidadesTecnicas {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)// Java elije el autoincremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Especial_ID")
     private long id;
     @Column(name = "Especial")
@@ -38,7 +38,7 @@ public class EspecialidadesTecnicas {
         listarEspecialidades();
 
 
-        System.out.println("****************************************************************");
+
         System.out.println();
         Scanner teclado = new Scanner(System.in);
         System.out.println("Ingrese el Nombre de la Especiliadad a agregar(Max 20 caract):");
@@ -57,7 +57,7 @@ public class EspecialidadesTecnicas {
 
             em.persist(c);
             em.getTransaction().commit();
-            System.out.println("el id del Tecnico registrado es " + c.getId());
+            System.out.println("el id de la especialidad registrada es " + c.getId());
             c = em.find(EspecialidadesTecnicas.class, c.getId());
             System.out.println(c);
         } catch (Exception e) {

@@ -18,7 +18,7 @@ import java.util.Scanner;
 @Table(name = "clientes")
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)// Java elije el autoincremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Cliente_ID")
     private long id;
     private String razonS;

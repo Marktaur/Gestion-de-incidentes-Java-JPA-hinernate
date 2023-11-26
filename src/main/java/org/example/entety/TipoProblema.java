@@ -18,20 +18,20 @@ import java.util.Scanner;
 
 @Entity
 @Table(name = "tipoproblema")
-public class TipoProblema{
+public class TipoProblema {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)// Java elije el autoincremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Problema_ID")
     private long id;
-    @Column(name ="TipoProblema")
+    @Column(name = "TipoProblema")
     private String tipoProblema;
-    @Column(name ="TiempoRespuestaEstimado")
-    private int tiempoRespuestaEstimado;
+    @Column(name = "TiempoRespuestaEstimado")
+    private String tiempoRespuestaEstimado;
 
 
     @Override
     public String toString() {
-        return String.format("ID = %-3d, Tipo de diagnostico = '%-20s',Tiempo de respuesta estimada ='%-5s' Minutos", id, tipoProblema,tiempoRespuestaEstimado);
+        return String.format("ID = %-3d, Tipo de diagnostico = '%-20s',Tiempo de respuesta estimada ='%-5s' Minutos", id, tipoProblema, tiempoRespuestaEstimado);
     }
 
     public TipoProblema() {
@@ -42,28 +42,39 @@ public class TipoProblema{
         listarTipoProblema();
 
         Scanner teclado = new Scanner(System.in);
-        System.out.println("Ingrese el Nombre de la Solucion a agregar(Max 20 caract):");
+        System.out.println("Ingrese el Nombre del Diagnostico a agregar(Max 20 caract):");
 
-        String soluciones1;
+        String problema;
         do {
-            soluciones1 = teclado.nextLine();
-            if (soluciones1.length() > 20) {
+            problema = teclado.nextLine();
+            if (problema.length() > 20) {
                 System.out.println("Error Max 20 caracteres, vuelva a ingresar");
+
+            }
+        } while (problema.length() > 20);
+        System.out.println("Ingrese un tiempo  estimado de solucion(Max 99999 minutos):");
+
+        String problema1;
+        do {
+            problema1 = teclado.nextLine();
+            if (problema1.length() > 5) {
+                System.out.println("Error maximo 99999 minutos, vuelva a ingresar");
                 ;
             }
-        } while (soluciones1.length() > 20);
+        } while (problema1.length() > 5);
 
 
         EntityManager em = JpaUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            Solucion c = new Solucion();
-            c.setSolucion(soluciones1);
+            TipoProblema c = new TipoProblema();
+            c.setTipoProblema(problema);
+            c.setTiempoRespuestaEstimado(problema1);
 
             em.persist(c);
             em.getTransaction().commit();
-            System.out.println("el id de la solucion registrada es " + c.getId());
-            c = em.find(Solucion.class, c.getId());
+            System.out.println("el id del tipo de diagnostico registrado es " + c.getId());
+            c = em.find(TipoProblema.class, c.getId());
             System.out.println(c);
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -80,7 +91,7 @@ public class TipoProblema{
         //Listar Diagnosticos
         System.out.println();
         System.out.println("****************************************************************");
-        System.out.println("*************** Lista de Soluciones Tecnicas *******************");
+        System.out.println("*************** Lista de Problemas Tecnicas ********************");
         System.out.println("****************************************************************");
         tipo.forEach(System.out::println);
         System.out.println("****************************************************************");
@@ -94,15 +105,15 @@ public class TipoProblema{
         listarTipoProblema();
 
         Scanner s = new Scanner(System.in);
-        System.out.println("Ingrese el id de la Solucion a eliminar:");
+        System.out.println("Ingrese el id del diagnostico a eliminar:");
         Long id1 = s.nextLong();
         if (id1 != 1) {
 
             EntityManager em2 = JpaUtil.getEntityManager();
             try {
-                Solucion solucion2 = em2.find(Solucion.class, id1);
+                TipoProblema tipo = em2.find(TipoProblema.class, id1);
                 em2.getTransaction().begin();
-                em2.remove(solucion2);
+                em2.remove(tipo);
                 em2.getTransaction().commit();
             } catch (Exception e) {
                 em2.getTransaction().rollback();
@@ -122,35 +133,54 @@ public class TipoProblema{
         try {
             Scanner teclado = new Scanner(System.in);
             System.out.println();
-            System.out.println("Ingrese el Id de la Solucion a modificar");
+            System.out.println("Ingrese el Id del diagnostico a modificar");
             long id = teclado.nextInt();
-            Solucion c = em1.find(Solucion.class, id);
+            TipoProblema c = em1.find(TipoProblema.class, id);
             teclado.nextLine();
-            System.out.println("Ingrese el Nombre de la Solucion(Max 20 caract):");
-            String soluciones1;
+            System.out.println("Ingrese el Nombre del diagnostico(Max 20 caract):");
+            String problema;
             do {
-                soluciones1 = teclado.nextLine();
-                if (soluciones1.length() > 20) {
+                problema = teclado.nextLine();
+                if (problema.length() > 20) {
                     System.out.println("Error Max 20 caracteres, vuelva a ingresar");
                     ;
                 }
-            } while (soluciones1.length() > 20);
-            System.out.println();
-            em1.getTransaction().begin();
-            c.setSolucion(soluciones1);
+            } while (problema.length() > 20);
+            System.out.println("Ingrese un tiempo  estimado de solucion(Max 99999 minutos):");
 
-            em1.merge(c);
-            em1.getTransaction().commit();
-            System.out.println("el id de la Solucion registrada es " + c.getId());
-            c = em1.find(Solucion.class, c.getId());
-            System.out.println(c);
+            String problema1;
+            do {
+                problema1 = teclado.nextLine();
+                if (problema1.length() > 5) {
+                    System.out.println("Error maximo 99999 minutos, vuelva a ingresar");
+                    ;
+                }
+            } while (problema1.length() > 5);
+
+
+            EntityManager em = JpaUtil.getEntityManager();
+            try {
+                em.getTransaction().begin();
+
+                c.setTipoProblema(problema);
+                c.setTiempoRespuestaEstimado(problema1);
+
+                em1.merge(c);
+                em1.getTransaction().commit();
+                System.out.println("el id del diagnostico registrado es " + c.getId());
+                c = em1.find(TipoProblema.class, c.getId());
+                System.out.println(c);
+            } catch (Exception e) {
+                em1.getTransaction().rollback();
+                e.printStackTrace();
+            } finally {
+                em1.close();
+            }
+
+
         } catch (Exception e) {
-            em1.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            em1.close();
+            throw new RuntimeException(e);
         }
-
 
     }
 }

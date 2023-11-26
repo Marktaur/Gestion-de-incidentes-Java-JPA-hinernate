@@ -20,7 +20,7 @@ import java.util.Scanner;
 @Table(name = "solucion")
 public class Solucion {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)// Java elije el autoincremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Solucion_ID")
     private long id;
     private String solucion;

@@ -59,8 +59,8 @@ public class Menu {
                    /* case "Incidentes" -> Cliente.agregarIncidente();*/
                    case "Tecnicos" -> Tecnicos.listarTecnicos();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.listarEspecialidades();
-                   /*case "Reportes" -> Cliente.reportes1();
-                   case "Servicios" -> Cliente.agregarServicio();*/
+                   //case "Reportes" -> Cliente.reportes1();
+                   case "Servicios" -> TipoServicio.listarTipoServicio();
                    case "Diagnosticos" -> TipoProblema.listarTipoProblema();
                    case "Soluciones" -> Solucion.listarSolucion();
                }
@@ -72,8 +72,8 @@ public class Menu {
                   /* case "Incidentes" -> Cliente.agregarIncidente();*/
                    case "Tecnicos" -> Tecnicos.agregarTecnico();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.agregarEspecialidad();
-                   /*case "Reportes" -> Cliente.reportes1();
-                   case "Servicios" -> Cliente.agregarServicio();*/
+                   //case "Reportes" -> Cliente.reportes1();
+                   case "Servicios" -> TipoServicio.agregarTipoServicio();
                    case "Diagnosticos" -> TipoProblema.agregarTipoProblema();
                    case "Soluciones" -> Solucion.agregarSolucion();
                }
@@ -88,9 +88,9 @@ public class Menu {
                    case "Tecnicos" -> Tecnicos.modificarTecnico();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.modificarEspecialidad();
                    //case "Reportes" -> Cliente.reportes2();
-                   //case "Servicios" -> Cliente.modificarServicio();
+                   case "Servicios" -> TipoServicio.modificarTipoServicio();
                    case "Diagnosticos" -> TipoProblema.modificarTipoProblema();
-                    case "Soluciones" -> Solucion.modificarSolucion();
+                   case "Soluciones" -> Solucion.modificarSolucion();
                }
                System.out.println("Se ha editado el " + nombreMenu);
                break;
@@ -102,7 +102,7 @@ public class Menu {
                    case "Tecnicos" -> Tecnicos.bajaTecnico();
                    case "Especialidades Tecnicas" -> EspecialidadesTecnicas.bajaEspecialidad();
                   // case "Reportes" -> Cliente.reportes3();
-                 //  case "Servicios" -> Cliente.bajaServicio();
+                   case "Servicios" -> TipoServicio.bajaTipoServicio();
                    case "Diagnosticos" -> TipoProblema.bajaSTipoProblema();
                    case "Soluciones" -> Solucion.bajaSolucion();
                }

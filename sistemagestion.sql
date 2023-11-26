@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 18-11-2023 a las 03:10:54
+-- Tiempo de generación: 26-11-2023 a las 22:58:58
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -29,21 +29,45 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE IF NOT EXISTS `clientes` (
-  `Cliente_ID` int NOT NULL,
-  `razonS` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `cuit` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Cliente_ID` int NOT NULL AUTO_INCREMENT,
+  `razonS` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `cuit` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `TipoServicio` int DEFAULT NULL,
   PRIMARY KEY (`Cliente_ID`),
   KEY `TipoServicio` (`TipoServicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
 INSERT INTO `clientes` (`Cliente_ID`, `razonS`, `cuit`, `TipoServicio`) VALUES
-(1, 'Pedro Dias S.R.L.', '30445777120', 1),
-(2, 'Arcos Dorados S.A.', '30647478881', 3);
+(1, 'fghgfh', 'fghfg', 1),
+(2, 'dfgdfgdgdf', 'dfgdg', 1),
+(3, 'Sebastian Kang', '312312321', 1),
+(4, 'dfg', 'dfg1', 1),
+(5, 'dfgdf', 'dfgdg', 1),
+(6, 'ssdfs', 'sdfds', 1),
+(7, 'asdasd', 'asdasd', 1),
+(8, 'sermentana srl', '12324234', 1),
+(9, 'dfgd', 'dfgd', 1),
+(10, 'asdasd', '303asdaasd', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clientes_tiposervicio`
+--
+
+DROP TABLE IF EXISTS `clientes_tiposervicio`;
+CREATE TABLE IF NOT EXISTS `clientes_tiposervicio` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cliente_ID` int DEFAULT NULL,
+  `servicio_ID` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cliente_ID` (`cliente_ID`),
+  KEY `servicio_ID` (`servicio_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -53,22 +77,20 @@ INSERT INTO `clientes` (`Cliente_ID`, `razonS`, `cuit`, `TipoServicio`) VALUES
 
 DROP TABLE IF EXISTS `especialidadestecnicas`;
 CREATE TABLE IF NOT EXISTS `especialidadestecnicas` (
-  `Especial_ID` int NOT NULL,
-  `Especial` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Especial_ID` int NOT NULL AUTO_INCREMENT,
+  `Especial` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Especial_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `especialidadestecnicas`
 --
 
 INSERT INTO `especialidadestecnicas` (`Especial_ID`, `Especial`) VALUES
-(1, 'Especialidad Mantenimiento SAP'),
-(2, 'Especialidad Mantenimiento Tango'),
-(3, 'Especialidad Mantenimiento servidores'),
-(4, 'Especialidad Mantenimiento Windows'),
-(5, 'Especialidad Mantenimiento Mac Os'),
-(6, 'Especialidad Mantenimiento Linux');
+(1, 'SoporteSAP'),
+(2, 'Soporte PC'),
+(3, 'soporte Windows'),
+(4, NULL);
 
 -- --------------------------------------------------------
 
@@ -78,30 +100,32 @@ INSERT INTO `especialidadestecnicas` (`Especial_ID`, `Especial`) VALUES
 
 DROP TABLE IF EXISTS `incidentes`;
 CREATE TABLE IF NOT EXISTS `incidentes` (
-  `Incidente_ID` int NOT NULL,
+  `Incidente_ID` int NOT NULL AUTO_INCREMENT,
   `Cliente_ID` int DEFAULT NULL,
-  `Servicio_ID` int DEFAULT NULL,
-  `Descripcion` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Descripcion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `esComplejo` tinyint(1) DEFAULT NULL,
   `TipoProblema_ID` int DEFAULT NULL,
-  `Estado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Estado` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `FechaCreacion` date DEFAULT NULL,
-  `FechaResolucion` date DEFAULT NULL,
+  `fechaINI` datetime DEFAULT NULL,
+  `FechaFIN` datetime DEFAULT NULL,
   `Solucion_ID` int DEFAULT NULL,
   `Tecnico_ID` int DEFAULT NULL,
+  `TiempoOperador` int DEFAULT NULL,
   PRIMARY KEY (`Incidente_ID`),
   KEY `Solucion_ID` (`Solucion_ID`),
   KEY `Tecnico_ID` (`Tecnico_ID`),
   KEY `Cliente_ID` (`Cliente_ID`),
   KEY `TipoProblema_ID` (`TipoProblema_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `incidentes`
 --
 
-INSERT INTO `incidentes` (`Incidente_ID`, `Cliente_ID`, `Servicio_ID`, `Descripcion`, `esComplejo`, `TipoProblema_ID`, `Estado`, `FechaCreacion`, `FechaResolucion`, `Solucion_ID`, `Tecnico_ID`) VALUES
-(1, 2, 1, 'No inicia el Sap', 1, 1, 'Resuelto', '2023-11-01', '2023-11-02', 1, 1);
+INSERT INTO `incidentes` (`Incidente_ID`, `Cliente_ID`, `Descripcion`, `esComplejo`, `TipoProblema_ID`, `Estado`, `FechaCreacion`, `fechaINI`, `FechaFIN`, `Solucion_ID`, `Tecnico_ID`, `TiempoOperador`) VALUES
+(5, 1, 'Pc dañada', 1, 1, 'Abierto', '2023-11-26', '2023-11-25 13:00:00', NULL, 2, 1, 200),
+(8, 1, 'falla windows', 1, 3, NULL, '2023-11-26', NULL, NULL, 1, 1, 200);
 
 -- --------------------------------------------------------
 
@@ -111,18 +135,18 @@ INSERT INTO `incidentes` (`Incidente_ID`, `Cliente_ID`, `Servicio_ID`, `Descripc
 
 DROP TABLE IF EXISTS `solucion`;
 CREATE TABLE IF NOT EXISTS `solucion` (
-  `Solucion_ID` int NOT NULL,
-  `solucion` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `DescrpSolucion` text COLLATE utf8_spanish_ci,
+  `Solucion_ID` int NOT NULL AUTO_INCREMENT,
+  `solucion` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Solucion_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `solucion`
 --
 
-INSERT INTO `solucion` (`Solucion_ID`, `solucion`, `DescrpSolucion`) VALUES
-(1, 'Solucion de prueba', 'Resuelto ok');
+INSERT INTO `solucion` (`Solucion_ID`, `solucion`) VALUES
+(1, 'Default'),
+(2, 'Reparacion de software');
 
 -- --------------------------------------------------------
 
@@ -132,23 +156,40 @@ INSERT INTO `solucion` (`Solucion_ID`, `solucion`, `DescrpSolucion`) VALUES
 
 DROP TABLE IF EXISTS `tecnicos`;
 CREATE TABLE IF NOT EXISTS `tecnicos` (
-  `Tecnico_ID` int NOT NULL,
-  `Nombre` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Tecnico_ID` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `Especialidad` int DEFAULT NULL,
-  `Mail` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Tel` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Mail` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ocupado` tinyint NOT NULL,
   PRIMARY KEY (`Tecnico_ID`),
   KEY `Especialidad` (`Especialidad`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tecnicos`
 --
 
-INSERT INTO `tecnicos` (`Tecnico_ID`, `Nombre`, `Especialidad`, `Mail`, `Tel`) VALUES
-(1, 'Marcos Benassi', 1, 'marcos@gmail.com', '111111111'),
-(2, 'Luciano Olmedo', 6, 'Luciano@gmail.com', '1111111111'),
-(3, 'Matias Gil', 4, 'Matias@gmail.com', '111111111');
+INSERT INTO `tecnicos` (`Tecnico_ID`, `Nombre`, `Especialidad`, `Mail`, `ocupado`) VALUES
+(1, 'Default', 1, '123456', 0),
+(2, 'sebastian rodriguez', 1, '321321321', 0),
+(3, 'Marcos Benassi', 3, 'asdasd@gmail.com', 0),
+(4, 'alejandro', 2, '115154545', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tecnicos_especialidades`
+--
+
+DROP TABLE IF EXISTS `tecnicos_especialidades`;
+CREATE TABLE IF NOT EXISTS `tecnicos_especialidades` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tecnico_ID` int DEFAULT NULL,
+  `especial_ID` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tecnico_ID` (`tecnico_ID`),
+  KEY `especial_ID` (`especial_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -158,45 +199,41 @@ INSERT INTO `tecnicos` (`Tecnico_ID`, `Nombre`, `Especialidad`, `Mail`, `Tel`) V
 
 DROP TABLE IF EXISTS `tipoproblema`;
 CREATE TABLE IF NOT EXISTS `tipoproblema` (
-  `Problema_ID` int NOT NULL,
-  `TipoProblema` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `TiempoRespuestaEstimado` int DEFAULT NULL,
+  `Problema_ID` int NOT NULL AUTO_INCREMENT,
+  `TipoProblema` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `TiempoRespuestaEstimado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Problema_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tipoproblema`
 --
 
 INSERT INTO `tipoproblema` (`Problema_ID`, `TipoProblema`, `TiempoRespuestaEstimado`) VALUES
-(1, 'Caida general del Programa', 200),
-(2, 'Caida de la Base de Datos(BBDD)', 300),
-(3, 'Problema de hardware', 100);
+(1, 'Falla Servidor', '1000'),
+(3, 'Falla Windows', '150');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tiposervicioid`
+-- Estructura de tabla para la tabla `tiposervicio`
 --
 
-DROP TABLE IF EXISTS `tiposervicioid`;
-CREATE TABLE IF NOT EXISTS `tiposervicioid` (
-  `Servicio_ID` int NOT NULL,
-  `TipoServ` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+DROP TABLE IF EXISTS `tiposervicio`;
+CREATE TABLE IF NOT EXISTS `tiposervicio` (
+  `Servicio_ID` int NOT NULL AUTO_INCREMENT,
+  `TipoServ` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Servicio_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `tiposervicioid`
+-- Volcado de datos para la tabla `tiposervicio`
 --
 
-INSERT INTO `tiposervicioid` (`Servicio_ID`, `TipoServ`) VALUES
-(1, 'SoporteSap'),
-(2, 'soporteTango'),
-(3, 'SoporteServidores'),
-(4, 'SoporteWindows'),
-(5, 'SoporteMacOs'),
-(6, 'SoporteLinux');
+INSERT INTO `tiposervicio` (`Servicio_ID`, `TipoServ`) VALUES
+(1, 'Soporte SAP'),
+(2, 'Soporte Windows'),
+(3, 'Soporte PC');
 
 --
 -- Restricciones para tablas volcadas
@@ -206,7 +243,14 @@ INSERT INTO `tiposervicioid` (`Servicio_ID`, `TipoServ`) VALUES
 -- Filtros para la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`TipoServicio`) REFERENCES `tiposervicioid` (`Servicio_ID`);
+  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`TipoServicio`) REFERENCES `tiposervicio` (`Servicio_ID`);
+
+--
+-- Filtros para la tabla `clientes_tiposervicio`
+--
+ALTER TABLE `clientes_tiposervicio`
+  ADD CONSTRAINT `clientes_tiposervicio_ibfk_1` FOREIGN KEY (`cliente_ID`) REFERENCES `clientes` (`Cliente_ID`),
+  ADD CONSTRAINT `clientes_tiposervicio_ibfk_2` FOREIGN KEY (`servicio_ID`) REFERENCES `tiposervicio` (`Servicio_ID`);
 
 --
 -- Filtros para la tabla `incidentes`
@@ -222,6 +266,13 @@ ALTER TABLE `incidentes`
 --
 ALTER TABLE `tecnicos`
   ADD CONSTRAINT `tecnicos_ibfk_1` FOREIGN KEY (`Especialidad`) REFERENCES `especialidadestecnicas` (`Especial_ID`);
+
+--
+-- Filtros para la tabla `tecnicos_especialidades`
+--
+ALTER TABLE `tecnicos_especialidades`
+  ADD CONSTRAINT `tecnicos_especialidades_ibfk_1` FOREIGN KEY (`tecnico_ID`) REFERENCES `tecnicos` (`Tecnico_ID`),
+  ADD CONSTRAINT `tecnicos_especialidades_ibfk_2` FOREIGN KEY (`especial_ID`) REFERENCES `especialidadestecnicas` (`Especial_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

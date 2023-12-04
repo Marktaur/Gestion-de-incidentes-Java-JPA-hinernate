@@ -70,8 +70,7 @@ public class Main {
             }
         } while (option != 9);
         System.out.println();
-
-
+        
         System.out.println("****************** Grupo 9 Comicion 117 ************************");
         System.out.println("*************** Marcos Benassi - Matias Gil ********************");
         System.out.println("****************************************************************");

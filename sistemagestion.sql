@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 26-11-2023 a las 22:58:58
+-- Tiempo de generación: 04-12-2023 a las 01:45:14
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -42,16 +42,11 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 --
 
 INSERT INTO `clientes` (`Cliente_ID`, `razonS`, `cuit`, `TipoServicio`) VALUES
-(1, 'fghgfh', 'fghfg', 1),
-(2, 'dfgdfgdgdf', 'dfgdg', 1),
+(1, 'Manuel SRL', '301545454', 1),
+(2, 'Perez Con Pan S.A.', '3021211211', 1),
 (3, 'Sebastian Kang', '312312321', 1),
-(4, 'dfg', 'dfg1', 1),
-(5, 'dfgdf', 'dfgdg', 1),
-(6, 'ssdfs', 'sdfds', 1),
-(7, 'asdasd', 'asdasd', 1),
-(8, 'sermentana srl', '12324234', 1),
-(9, 'dfgd', 'dfgd', 1),
-(10, 'asdasd', '303asdaasd', 1);
+(4, 'Arcos Dorados S.A.', '270002154', 1),
+(8, 'sermentana srl', '12324234', 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +85,7 @@ INSERT INTO `especialidadestecnicas` (`Especial_ID`, `Especial`) VALUES
 (1, 'SoporteSAP'),
 (2, 'Soporte PC'),
 (3, 'soporte Windows'),
-(4, NULL);
+(4, 'Tecnico Electronico');
 
 -- --------------------------------------------------------
 
@@ -117,15 +112,16 @@ CREATE TABLE IF NOT EXISTS `incidentes` (
   KEY `Tecnico_ID` (`Tecnico_ID`),
   KEY `Cliente_ID` (`Cliente_ID`),
   KEY `TipoProblema_ID` (`TipoProblema_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `incidentes`
 --
 
 INSERT INTO `incidentes` (`Incidente_ID`, `Cliente_ID`, `Descripcion`, `esComplejo`, `TipoProblema_ID`, `Estado`, `FechaCreacion`, `fechaINI`, `FechaFIN`, `Solucion_ID`, `Tecnico_ID`, `TiempoOperador`) VALUES
-(5, 1, 'Pc dañada', 1, 1, 'Abierto', '2023-11-26', '2023-11-25 13:00:00', NULL, 2, 1, 200),
-(8, 1, 'falla windows', 1, 3, NULL, '2023-11-26', NULL, NULL, 1, 1, 200);
+(1, 1, 'falla soft', 0, 1, NULL, '2023-12-03', NULL, NULL, 1, 1, 0),
+(2, 8, 'no enciende pc', 1, 5, NULL, '2023-12-03', NULL, NULL, 1, 1, 100),
+(3, 3, 'falla pc', 0, 1, NULL, '2023-12-03', NULL, NULL, 1, 1, 1000);
 
 -- --------------------------------------------------------
 
@@ -138,15 +134,18 @@ CREATE TABLE IF NOT EXISTS `solucion` (
   `Solucion_ID` int NOT NULL AUTO_INCREMENT,
   `solucion` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Solucion_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `solucion`
 --
 
 INSERT INTO `solucion` (`Solucion_ID`, `solucion`) VALUES
-(1, 'Default'),
-(2, 'Reparacion de software');
+(1, '-'),
+(2, 'Reparacion de software'),
+(5, 'Reparacion de PC'),
+(6, 'Instalacion de imagen SO'),
+(7, 'Cambio de hardware');
 
 -- --------------------------------------------------------
 
@@ -170,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `tecnicos` (
 --
 
 INSERT INTO `tecnicos` (`Tecnico_ID`, `Nombre`, `Especialidad`, `Mail`, `ocupado`) VALUES
-(1, 'Default', 1, '123456', 0),
+(1, '-', 1, '123456', 0),
 (2, 'sebastian rodriguez', 1, '321321321', 0),
 (3, 'Marcos Benassi', 3, 'asdasd@gmail.com', 0),
 (4, 'alejandro', 2, '115154545', 0);
@@ -203,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `tipoproblema` (
   `TipoProblema` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `TiempoRespuestaEstimado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Problema_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tipoproblema`
@@ -211,7 +210,11 @@ CREATE TABLE IF NOT EXISTS `tipoproblema` (
 
 INSERT INTO `tipoproblema` (`Problema_ID`, `TipoProblema`, `TiempoRespuestaEstimado`) VALUES
 (1, 'Falla Servidor', '1000'),
-(3, 'Falla Windows', '150');
+(3, 'Falla Windows', '150'),
+(4, 'Falla hardware', '100'),
+(5, 'Falla Monitor', '50'),
+(6, 'Falla SAP', '200'),
+(7, 'Falla Linux', '150');
 
 -- --------------------------------------------------------
 

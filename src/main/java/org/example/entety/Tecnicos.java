@@ -30,7 +30,7 @@ public class Tecnicos {
     @Override
     public String toString() {
 
-        return String.format("ID = %-3d, Nombre = '%-20s', Especialidad = %-20d, Mail/Tel = '%-20s', Ocupado = '%s'",
+        return String.format("ID = %-3d, Nombre = '%-20s', Especialidad = %-20d, Mail/Tel = '%-20s', Estado = '%s'",
                 id, nombre, especialidad, mailTel, ocupado);
     }
 
@@ -136,6 +136,7 @@ public class Tecnicos {
             System.out.println("Ingrese el Id del Tecnico a modificar");
             long id = teclado.nextInt();
             Tecnicos b = em.find(Tecnicos.class, id);
+
             teclado.nextLine();
             System.out.println("Ingrese el Nombre del Tecnico(Max 20 caract):");
             String nombre;
@@ -187,5 +188,7 @@ public class Tecnicos {
     }
 
 
-
+    public boolean getOcupado() {
+        return false;
+    }
 }

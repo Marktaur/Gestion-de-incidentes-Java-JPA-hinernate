@@ -15,11 +15,10 @@ public class EnReparacion implements IEstado {
     @Override
     public void estadoEnReparacion(Incidente incidente) {
         System.out.println(" Incidente En reparacion ");
-        EntityManager em = JpaUtil.getEntityManager();
-        em.getTransaction().begin();
+
         incidente.setEstadoIncidente("En Reparacion");
-        em.merge(incidente);
-        em.close();
+
+
     }
 
     @Override
@@ -28,7 +27,5 @@ public class EnReparacion implements IEstado {
             incidente.setEstado(new Resuelto());
         System.out.println("Cambiando de estado a Resuelto");
     }
-    public String toString() {
-        return "Estado: En Reparacion";
-    }
+
 }

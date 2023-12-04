@@ -16,9 +16,10 @@ public class Main {
             System.out.println("****************************************************************");
             Scanner sc = new Scanner(System.in);
 
+
             List<String> menuOptions = Arrays.asList("Clientes", "Incidentes", "Tecnicos", "Reportes", "Servicios", "Diagnosticos", "Soluciones","Especialidades Tecnicas", "Salir");
             List<String> menuClientes = Arrays.asList("Listar Clientes","Agregar nuevo cliente", "Editar cliente", "Eliminar cliente", "Salir");
-            List<String> menuIncidentes = Arrays.asList("Listar Incidentes Abiertos","Visualizar Incidente por N°","Agregar nuevo incidente", "Editar Incidente", "Asignar Tecnico", "Solucionar - Cerrar", "Incidentes Resueltos", "Eliminar incidente", "Salir");
+            List<String> menuIncidentes = Arrays.asList("Listar Incidentes","Visualizar Incidente por N°","Agregar nuevo incidente", "Editar Incidente", "Asignar Tecnico", "Solucionar - Cerrar", "Incidentes Resueltos", "Eliminar incidente", "Salir");
             List<String> menuTecnicos = Arrays.asList("Listar Tecnicos","Agregar nuevo tecnico", "Editar tecnico", "Eliminar tecnico", "Salir");
             List<String> menuReportes = Arrays.asList("Reporte Diario por Tecnico", "Reporte Cantidad de incidentes ultimos N dias", "Reporte celeridad tecnico ultimos N dias", "Tecnico con mayor celeridad", "Salir");
             List<String> menuTipoServicios = Arrays.asList("Listar Servicios","Agregar nuevo servicio", "Editar Servicio", "Eliminar Servicio", "Salir");

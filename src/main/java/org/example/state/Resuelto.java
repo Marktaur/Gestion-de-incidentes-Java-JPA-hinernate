@@ -19,15 +19,12 @@ public class Resuelto implements IEstado {
     @Override
     public void estadoResuelto(Incidente incidente) {
 
+        if (incidente.getFechaFin()!=null){ incidente.setEstadoIncidente("Resuelto");}
 
         System.out.println("Incidente Resuelto");
-        EntityManager em = JpaUtil.getEntityManager();
-        em.getTransaction().begin();
-        incidente.setEstadoIncidente("Resuelto");
-        em.merge(incidente);
-        em.close();
-    }
-    public String toString() {
-        return "Estado: Resuelto";
+
+
+
+
     }
 }

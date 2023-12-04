@@ -77,7 +77,7 @@ public class Menu {
                    case "Diagnosticos" -> TipoProblema.agregarTipoProblema();
                    case "Soluciones" -> Solucion.agregarSolucion();
                }
-               System.out.println("Se ha agregado como nuevo " + nombreMenu);
+
                break;
 
 
@@ -92,7 +92,7 @@ public class Menu {
                    case "Diagnosticos" -> TipoProblema.modificarTipoProblema();
                    case "Soluciones" -> Solucion.modificarSolucion();
                }
-               System.out.println("Se ha editado el " + nombreMenu);
+
                break;
 
            case 4:
@@ -106,7 +106,7 @@ public class Menu {
                    case "Diagnosticos" -> TipoProblema.bajaSTipoProblema();
                    case "Soluciones" -> Solucion.bajaSolucion();
                }
-               System.out.println("Se ha eliminado el " + nombreMenu);
+
                break;
 
            case 5:

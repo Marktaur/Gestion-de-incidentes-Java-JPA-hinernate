@@ -10,11 +10,10 @@ public class Abierto implements IEstado {
     public void estadoAbierto(Incidente incidente) {
         System.out.println("* incidente Abierto *");
 
-        EntityManager em = JpaUtil.getEntityManager();
-        em.getTransaction().begin();
+
         incidente.setEstadoIncidente("Abierto");
-        em.merge(incidente);
-        em.close();
+
+
 
     }
 
@@ -31,7 +30,5 @@ public class Abierto implements IEstado {
     public void estadoResuelto(Incidente incidente) {
         System.out.println("Incidente Abierto, no puede cerrarse, Asigne el tecnico primero");
     }
-    public String toString() {
-        return "Estado: Abierto";
-    }
+
 }

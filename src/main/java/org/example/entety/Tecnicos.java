@@ -27,6 +27,8 @@ public class Tecnicos {
     private String mailTel;
     private boolean ocupado;
 
+
+
     @Override
     public String toString() {
 
@@ -188,7 +190,5 @@ public class Tecnicos {
     }
 
 
-    public boolean getOcupado() {
-        return false;
-    }
+
 }
